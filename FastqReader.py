@@ -41,7 +41,7 @@ def FastqReader (fastq_file):
                 yield FastqSeq(
                 name = name.rstrip()[1:].split()[0],
                 seq = seq.rstrip(),
-                qualstr = qual.rstrip())
+                qual = qual.rstrip())
 
                 i+=1
 

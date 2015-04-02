@@ -27,17 +27,30 @@ class FastqSeq (object):
 
     #~~~~~~~FUNDAMENTAL METHODS~~~~~~~#
 
-    def __init__ (self, name, seq, qualstr, descr=""):
+    def __init__ (self, name, seq, qual, descr=""):
         """
         @param name Name of the sequence (without spaces)
         @param seq DNA sequence string
-        @param qual string of quality encoded in illumina 1.8+ phred +33
+        @param qual string of quality encoded in illumina 1.8+ phred +33, or ndarray of int or
+        list of int
         @param descr Facultative description
         """
+
         self.name = name
         self.seq = seq
-        self.qual = np.array([ord(x)-33 for x in qualstr])
         self.descr = descr
+
+        if type(qual) == str:
+            self.qual = np.array([ord(x)-33 for x in qual])
+
+        elif type(qual) == np.ndarray:
+            self.qual = qual
+
+        elif type(qual) == list:
+            self.qual = np.array(qual)
+
+        else:
+            raise TypeError("qual is not a valid type : str, numpy.ndarray or list of int")
 
         assert len(self.seq) == len(self.qual), "Sequence length and quality string length are not equal."
 
