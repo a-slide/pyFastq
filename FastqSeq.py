@@ -42,12 +42,15 @@ class FastqSeq (object):
 
         if type(qual) == str:
             self.qual = np.array([ord(x)-33 for x in qual])
+            print ("Str type")
 
         elif type(qual) == np.ndarray:
             self.qual = qual
+            print ("ndarray type")
 
         elif type(qual) == list:
             self.qual = np.array(qual)
+            print ("list type")
 
         else:
             raise TypeError("qual is not a valid type : str, numpy.ndarray or list of int")
