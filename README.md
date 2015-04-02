@@ -12,11 +12,18 @@ When the file is empty the generator raise a StopIteration exception indicating 
 Any part of the sequence name following a blank space will be removed
 
 ## FastqSeq : Simple object representing a Fastq sequence
-FastqSeq is a simple python object class generating a object representing a fastq sequence. The object is initialised with a name, a DNA sequence, an **illumina 1.8+ Phred +33** encoded quality sequence (same size than the DNA sequence) and eventually a short text description. After creation the object has the following fields:
+FastqSeq is a simple python object class generating a object representing a Fastq sequence. The object is initialized with:
+
+* A for the sequence without @
+* A DNA sequence as a string
+* A quality score, as an **illumina 1.8+** encoded quality string, a numpy.ndarray of integers in **Phred +33** or python list of integers in **Phred +33**
+* Eventually a short text description
+The DNA sequence and the quality score must have the same size otherwise an assertion error is raised
+After creation the object has the following fields:
 
 * name = name of the sequence without @.
 * seq = The DNA sequence of the fastq sequence store as a simple string.
-* qual = An numpy integer array representing the Phred Quality of bases (support all np.array methods)
+* qual = An numpy integer ndarray representing the Phred Quality of bases (support all np.array methods)
 * descr = A description of the fastq sequence.
 * qualstr = A string of letters corresponding to the sequence quality in illumina 1.8+ Phred 33 encoding
 * fastqstr = The field "descr" will be included in the output fastq sequence name after a space if present

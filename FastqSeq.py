@@ -20,7 +20,7 @@ class FastqSeq (object):
     """
     Simple Representation of a fastq file. The object support slicing and addition operations
     The quality score is a numpy array to facilitate further data manipulation
-    Only works with illumina 1.8+ Phred 33 quality encoding
+    Only works with illumina 1.8+ Phred +33 quality encoding
     """
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
@@ -42,15 +42,12 @@ class FastqSeq (object):
 
         if type(qual) == str:
             self.qual = np.array([ord(x)-33 for x in qual])
-            print ("Str type")
 
         elif type(qual) == np.ndarray:
             self.qual = qual
-            print ("ndarray type")
 
         elif type(qual) == list:
             self.qual = np.array(qual)
-            print ("list type")
 
         else:
             raise TypeError("qual is not a valid type : str, numpy.ndarray or list of int")
