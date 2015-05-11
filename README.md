@@ -18,6 +18,7 @@ FastqSeq is a simple python object class generating a object representing a Fast
 * A DNA sequence as a string
 * A quality score, as an **illumina 1.8+** encoded quality string, a numpy.ndarray of integers in **Phred +33** or python list of integers in **Phred +33**
 * Eventually a short text description
+
 The DNA sequence and the quality score must have the same size otherwise an assertion error is raised
 
 After creation the object has the following fields:
